@@ -1,0 +1,106 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Triage dei sinkholes</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
+
+
+    <style>
+    #centrato {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+
+    /*
+    *  Where the magic happens
+    *  Centering method from CSS Tricks
+    *  http://css-tricks.com/centering-percentage-widthheight-elements/
+    */
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -o-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+    }
+</style>
+
+  </head>
+  <body>
+    <center><img src="img/logo.png"></center><br>
+    <div class="row">
+      <div class="large-12 columns" >
+        <center>
+		<div id="titolo">
+		<center>
+		<h3>Calcolo</h3>
+		</center>
+		</div>
+
+    <div>
+      </div>
+
+    </div>
+
+
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+	<script>
+    $(document).bind('mobileinit',function(){
+        $.mobile.pushStateEnabled = false;
+    });
+</script>
+
+	<script src="js/jquery.mobile.min.js"></script>
+    <script>
+      $(document).foundation();
+
+      $( document ).ready(function() {
+          var diametro = sessionStorage.getItem("diametro");
+          var deformazione = sessionStorage.getItem("deformazione");
+          var pericolo = sessionStorage.getItem("pericolo");
+          var elemento = sessionStorage.getItem("pericolo");
+          alert("diametro "+ diametro+"deformazione "+ deformazione+"pericolo "+ pericolo+"elemento "+ elemento);
+
+          var arr_x = [
+                      [1, 1, 3, 3],
+                      [1, 2, 3, 4],
+                      [2, 3, 3, 4],
+                      [3, 3, 4, 4]
+                      ];
+
+          var arr_k = [
+                      [1, 1, 2, 2],
+                      [2, 2, 2, 3],
+                      [3, 3, 3, 4],
+                      [4, 4, 4, 4]
+                      ];
+
+          var arr_r = [
+                      [1, 1, 2, 2],
+                      [1, 2, 3, 3],
+                      [2, 2, 4, 4],
+                      [2, 3, 4, 4]
+                      ];
+
+      //il primo indice e' quello riga, il secondo della colonna
+      var x_calc = arr_x[diametro-1][deformazione-1];
+      alert("x " +  x_calc);
+      var k_calc = arr_k[pericolo-1][x_calc-1];
+      alert("k " + k_calc);
+      var r_calc = arr_r[elemento-1][k_calc-1];
+      alert("r " + r_calc);
+
+      })
+
+	  $(document).bind('swiperight', function () {
+	 			window.location.href="index.html";
+		});
+
+
+
+    </script>
+  </body>
+</html>
