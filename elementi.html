@@ -42,7 +42,7 @@
           </div>
 
           <div class="small-3 large-3 columns">
-            <select id="nr_abitazioni">
+            <select disabled id="nr_abitazioni">
              <option value = "0">&lt;10 abitazioni</option>
              <option value = "1">&ge;10 abitazioni</option>
           </select>
@@ -239,7 +239,7 @@
           </select>
         </div>
           <div class="small-3 large-3 columns">
-              <select id="stato_pferrovia">
+              <select disabled id="stato_pferrovia">
                <option value = "0">Chiusa</option>
                <option value = "1">Aperta </option>
             </select>
@@ -258,7 +258,7 @@
         </select>
       </div>
         <div class="small-3 large-3 columns">
-            <select id="stato_sferrovia">
+            <select disabled id="stato_sferrovia">
              <option value = "0">Chiusa</option>
              <option value = "1">Aperta </option>
           </select>
@@ -276,7 +276,7 @@
         </select>
       </div>
         <div class="small-3 large-3 columns">
-            <select id="stato_autostrada">
+            <select disabled id="stato_autostrada">
              <option value = "0">Chiusa</option>
              <option value = "1">Aperta </option>
           </select>
@@ -296,13 +296,13 @@
           </select>
         </div>
         <div class="small-2 large-2 columns">
-            <select id="sprov_stato">
+            <select disabled id="sprov_stato">
              <option value = "0">Chiusa</option>
              <option value = "1">Aperta </option>
           </select>
         </div>
         <div class="small-2 large-2 columns">
-            <select id="sprov_isola">
+            <select disabled id="sprov_isola">
              <option value = "0">Isola</option>
              <option value = "1">Non isola </option>
           </select>
@@ -322,13 +322,13 @@
           </select>
         </div>
         <div class="small-2 large-2 columns">
-            <select id="scom_stato">
+            <select disabled id="scom_stato">
              <option value = "0">Chiusa</option>
              <option value = "1">Aperta </option>
           </select>
         </div>
         <div class="small-2 large-2 columns">
-            <select id="scom_isola">
+            <select disabled id="scom_isola">
              <option value = "0">Isola</option>
              <option value = "1">Non isola </option>
           </select>
@@ -490,13 +490,250 @@
          //$(document).ready(function() {
             $(document).foundation();
 
-            var max = 0;
+            var max = 1;
+            var test_ab = 1;
+            var test_pf = 1;
+            var test_ps = 1;
+            var test_au = 1;
 
             $("#saveAndGo").click(function() {
-                  
+
+              if (test_ab > max)
+                {
+                  max = test_ab;
+                }
+            if (test_pf > max)
+                  {
+                    max = test_pf;
+                  }
+            if (test_ps > max)
+                    {
+                      max = test_ps;
+                    }
+            if (test_au > max)
+                      {
+                        max = test_au;
+                      }
+
+
+                alert("Indice elementi a rischio "+ max);
+                sessionStorage.setItem("elementi",max);
+
                  $("#elementi" ).submit();
             });
 
+
+// CALCOLO ABITAZIONI///////////////////////////////////
+            $("#abitazioni").change(function() {
+                //alert($("#pferrovia" ).val());
+                if ($("#abitazioni" ).val() > 0)
+                {
+                  $("#nr_abitazioni" ).prop( "disabled", false );
+                }
+                  else {
+                    $("#nr_abitazioni" ).prop( "disabled", true );
+                  }
+
+                /// calcolo
+                if ($("#abitazioni" ).val() > 0)
+                    {
+                      if (($("#abitazioni" ).val() == 3) && ($("#nr_abitazioni" ).val() == 0)) test_ab = 2;
+                      if (($("#abitazioni" ).val() == 4) && ($("#nr_abitazioni" ).val() == 0)) test_ab = 3;
+                      if (($("#abitazioni" ).val() == 3) && ($("#nr_abitazioni" ).val() == 1)) test_ab = 3;
+                      if (($("#abitazioni" ).val() == 4) && ($("#nr_abitazioni" ).val() == 1)) test_ab = 4;
+
+                    }
+                    else {
+                      test_ab = 1;
+                    }
+
+                    alert(test_ab);
+            });
+
+            $("#nr_abitazioni").change(function() {
+                /// calcolo
+                if ($("#abitazioni" ).val() > 0)
+                    {
+                      if (($("#abitazioni" ).val() == 3) && ($("#nr_abitazioni" ).val() == 0)) test_ab = 2;
+                      if (($("#abitazioni" ).val() == 4) && ($("#nr_abitazioni" ).val() == 0)) test_ab = 3;
+                      if (($("#abitazioni" ).val() == 3) && ($("#nr_abitazioni" ).val() == 1)) test_ab = 3;
+                      if (($("#abitazioni" ).val() == 4) && ($("#nr_abitazioni" ).val() == 1)) test_ab = 4;
+
+                    }
+                    else {
+                      test_ab = 1;
+                    }
+
+                   alert(test_ab);
+            });
+
+
+// CALCOLO FERROVIE PRINCIPALI///////////////////////////////////
+                        $("#pferrovia").change(function() {
+                            alert($("#pferrovia" ).val())
+                            if ($("#pferrovia" ).val() > 0)
+                            {
+                              $("#stato_pferrovia" ).prop( "disabled", false );
+                              alert($("#stato_pferrovia" ).val())
+                            }
+                              else {
+                                $("#stato_pferrovia" ).prop( "disabled", true );
+                              }
+
+                            /// calcolo
+                            if ($("#pferrovia" ).val() > 0)
+                                {
+                                  if (($("#pferrovia" ).val() == 2) && ($("#stato_pferrovia" ).val() == 0)) test_pf = 2;
+                                  if (($("#pferrovia" ).val() == 3) && ($("#stato_pferrovia" ).val() == 0)) test_pf = 3;
+                                  if (($("#pferrovia" ).val() == 2) && ($("#stato_pferrovia" ).val() == 1)) test_pf = 2;
+                                  if (($("#pferrovia" ).val() == 3) && ($("#stato_pferrovia" ).val() == 1)) test_pf = 4;
+
+                                }
+                                else {
+                                  test_pf = 1;
+                                }
+
+                                alert(test_pf);
+                        });
+
+                        $("#stato_pferrovia").change(function() {
+                            /// calcolo
+                            if ($("#stato_pferrovia" ).val() > 0)
+                                {
+                                  if (($("#pferrovia" ).val() == 2) && ($("#stato_pferrovia" ).val() == 0)) test_pf = 2;
+                                  if (($("#pferrovia" ).val() == 3) && ($("#stato_pferrovia" ).val() == 0)) test_pf = 3;
+                                  if (($("#pferrovia" ).val() == 2) && ($("#stato_pferrovia" ).val() == 1)) test_pf = 2;
+                                  if (($("#pferrovia" ).val() == 3) && ($("#stato_pferrovia" ).val() == 1)) test_pf = 4;
+
+                                }
+                                else {
+                                  test_pf = 1;
+                                }
+
+                                alert(test_pf);
+                        });
+
+
+// CALCOLO FERROVIE SECONDARIE///////////////////////////////////
+              $("#sferrovia").change(function() {
+                  alert($("#sferrovia" ).val())
+                  if ($("#sferrovia" ).val() > 0)
+                  {
+                    $("#stato_sferrovia" ).prop( "disabled", false );
+                    alert($("#stato_sferrovia" ).val())
+                  }
+                    else {
+                      $("#stato_sferrovia" ).prop( "disabled", true );
+                    }
+
+                  /// calcolo
+                  if ($("#sferrovia" ).val() > 0)
+                      {
+                        if (($("#sferrovia" ).val() == 2) && ($("#stato_sferrovia" ).val() == 0)) test_sf = 2;
+                        if (($("#sferrovia" ).val() == 3) && ($("#stato_sferrovia" ).val() == 0)) test_sf = 3;
+                        if (($("#sferrovia" ).val() == 2) && ($("#stato_sferrovia" ).val() == 1)) test_sf = 2;
+                        if (($("#sferrovia" ).val() == 3) && ($("#stato_sferrovia" ).val() == 1)) test_sf = 4;
+
+                      }
+                      else {
+                        test_sf = 1;
+                      }
+
+                      alert(test_sf);
+              });
+
+              $("#stato_sferrovia").change(function() {
+                  /// calcolo
+                  if ($("#stato_sferrovia" ).val() > 0)
+                      {
+                        if (($("#sferrovia" ).val() == 2) && ($("#stato_sferrovia" ).val() == 0)) test_pf = 2;
+                        if (($("#sferrovia" ).val() == 3) && ($("#stato_sferrovia" ).val() == 0)) test_pf = 3;
+                        if (($("#sferrovia" ).val() == 2) && ($("#stato_sferrovia" ).val() == 1)) test_pf = 2;
+                        if (($("#sferrovia" ).val() == 3) && ($("#stato_sferrovia" ).val() == 1)) test_pf = 4;
+
+                      }
+                      else {
+                        test_pf = 1;
+                      }
+
+                      alert(test_pf);
+              });
+
+// CALCOLO AUTOSTRADE///////////////////////////////////
+            $("#autostrada").change(function() {
+                alert($("#autostrada" ).val())
+                if ($("#autostrada" ).val() > 0)
+                {
+                  $("#stato_autostrada" ).prop( "disabled", false );
+                  alert($("#stato_autostrada" ).val())
+                }
+                  else {
+                    $("#stato_autostrada" ).prop( "disabled", true );
+                  }
+
+                /// calcolo
+                if ($("#autostrada" ).val() > 0)
+                    {
+                      if (($("#autostrada" ).val() == 2) && ($("#stato_autostrada" ).val() == 0)) test_au = 2;
+                      if (($("#autostrada" ).val() == 3) && ($("#stato_autostrada" ).val() == 0)) test_au = 3;
+                      if (($("#autostrada" ).val() == 2) && ($("#stato_autostrada" ).val() == 1)) test_au = 2;
+                      if (($("#autostrada" ).val() == 3) && ($("#stato_autostrada" ).val() == 1)) test_au = 4;
+
+                    }
+                    else {
+                      test_au = 1;
+                    }
+
+                    alert(test_au);
+            });
+
+            $("#stato_autostrada").change(function() {
+                /// calcolo
+                if ($("#stato_autostrada" ).val() > 0)
+                    {
+                      if (($("#autostrada" ).val() == 2) && ($("#stato_autostrada" ).val() == 0)) test_au = 2;
+                      if (($("#autostrada" ).val() == 3) && ($("#stato_autostrada" ).val() == 0)) test_au = 3;
+                      if (($("#autostrada" ).val() == 2) && ($("#stato_autostrada" ).val() == 1)) test_au = 2;
+                      if (($("#autostrada" ).val() == 3) && ($("#stato_autostrada" ).val() == 1)) test_au = 4;
+
+                    }
+                    else {
+                      test_au = 1;
+                    }
+
+                    alert(test_au);
+            });
+
+
+            $("#sprov").change(function() {
+                //alert($("#pferrovia" ).val());
+                if ($("#sprov" ).val() > 0)
+                {
+                  $("#sprov_stato" ).prop( "disabled", false );
+                  $("#sprov_isola" ).prop( "disabled", false );
+
+                }
+                  else {
+                    $("#sprov_stato" ).prop( "disabled", true );
+                    $("#sprov_isola" ).prop( "disabled", true );
+
+                  }
+            });
+
+            $("#scom").change(function() {
+                //alert($("#pferrovia" ).val());
+                if ($("#scom" ).val() > 0)
+                {
+                  $("#scom_stato" ).prop( "disabled", false );
+                  $("#scom_isola" ).prop( "disabled", false );
+
+                }
+                  else {
+                    $("#scom_stato" ).prop( "disabled", true );
+                    $("#scom_isola" ).prop( "disabled", true );
+
+                  }
+            });
 
 
              // OSPEDALI
@@ -682,7 +919,8 @@
                                    if (test > max)
                                      {
                                        max = test;
-                                     }
+                                     }		 //alert($("#sistema option:selected" ).text());
+
                                    //alert(test+" max "+max);
                                  });
                                  // ---------------- ESPOSIZIONE ---------------------
