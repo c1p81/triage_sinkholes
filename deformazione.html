@@ -39,7 +39,7 @@
 		</div>
 
     <div>
-    <form id="diametro" >
+    <form action="pericolosita.html" id="diametro" >
 		<ul class="small-block-grid-2 large-block-grid-2">
 		<li><input name="selezione" id="deformazione1" type="radio" checked><label for="checkbox1">Deformazione &lt; 1 cm</label></li>
     <li><input name="selezione" id="deformazione2" type="radio"><label for="checkbox1">5 cm &gt; Deformazione &ge; 1 cm </label><br></li>
@@ -58,10 +58,17 @@
 
     </div>
 
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
 
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
+
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+
+
 	<script>
     $(document).bind('mobileinit',function(){
         $.mobile.pushStateEnabled = false;

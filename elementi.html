@@ -477,9 +477,14 @@
 
 
 
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
           <script src="js/vendor/jquery.js"></script>
           <script src="js/foundation.min.js"></script>
+
+          <!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
           <script>
             $(document).bind('mobileinit',function(){
                 $.mobile.pushStateEnabled = false;
@@ -519,7 +524,16 @@
                 alert("Indice elementi a rischio "+ max);
                 sessionStorage.setItem("elementi",max);
 
-                 $("#elementi" ).submit();
+                const fs = require('fs');
+                fs.writeFile("/tmp/test.txt", "Hey there!", function(err) {
+                if(err) {
+                    return console.log(err);
+                    }
+                    console.log("The file was saved!");
+                });
+                alert("salvataggio");
+
+                 //$("#elementi" ).submit();
             });
 
 

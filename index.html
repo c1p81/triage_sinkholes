@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Triage dei sinkholes</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="js/jquery-ui.css">
-    <link rel="stylesheet" href="js/jquery.timepicker.css">
+    <link rel="stylesheet" href="./css/foundation.css" />
+    <link rel="stylesheet" href="./js/jquery-ui.css">
+    <link rel="stylesheet" href="./js/jquery.timepicker.css">
 
 
     <script src="js/vendor/modernizr.js"></script>
@@ -122,12 +122,15 @@
        </form>
     </div>
 
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/jquery.timepicker.js"></script>
 	<script src="js/jquery.numeric.min.js"></script>
+  <script>if (window.module) module = window.module;</script>
 
 
     <script>
@@ -182,7 +185,8 @@
 		 sessionStorage.setItem("est",$('#est').val());
 		 sessionStorage.setItem("sistema",$('#sistema').val());
 		 //alert($("#sistema option:selected" ).text());
-         $("#anagrafica" ).submit();
+
+    $("#anagrafica" ).submit();
 
 	  });
 
